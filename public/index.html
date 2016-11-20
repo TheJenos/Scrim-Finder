@@ -1,0 +1,187 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="google-signin-client_id" content="825260574961-p5npi3trm7nab3ben5d9pi15pcmrk2d2.apps.googleusercontent.com">
+	<meta name="google-signin-cookiepolicy" content="single_host_origin" />
+
+	<meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<title>Scrim Finder</title>
+
+	<!-- Add to homescreen for Chrome on Android -->
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+	<!-- Add to homescreen for Safari on iOS -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Material Design Lite">
+	<link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+	<!-- Tile icon for Win8 (144x144 + tile color) -->
+	<meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+	<meta name="msapplication-TileColor" content="#3372DF">
+
+	<link rel="shortcut icon" href="images/favicon.png">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+<script type="text/javascript" src="JS\angular.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.deep_purple-pink.min.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+	body{
+			background-image: url('images/bg_2048.jpg');
+			    background-position: center;
+	}
+	#view-source {
+		position: fixed;
+		display: block;
+		right: 0;
+		bottom: 0;
+		margin-right: 40px;
+		margin-bottom: 40px;
+		z-index: 900;
+	}
+	.demo-ribbon {
+		width: 100%;
+		height: 40vh;
+		background-color: #3F51B5;
+		-webkit-flex-shrink: 0;
+		-ms-flex-negative: 0;
+		flex-shrink: 0;
+	}
+
+	.demo-main {
+		//margin-top: -35vh;
+		-webkit-flex-shrink: 0;
+		-ms-flex-negative: 0;
+		flex-shrink: 0;
+	}
+
+	.demo-header .mdl-layout__header-row {
+		padding-left: 40px;
+	}
+
+	.demo-container {
+		max-width: 1600px;
+		width: calc(100% - 16px);
+		margin: 0 auto;
+	}
+
+	.demo-content {
+		border-radius: 2px;
+		padding: 10px 30px;
+		margin-bottom: 80px;
+	}
+
+	.demo-layout.is-small-screen .demo-content {
+		padding: 40px 28px;
+	}
+
+	.demo-content h3 {
+		margin-top: 48px;
+	}
+
+	.demo-footer {
+		padding-left: 40px;
+	}
+
+	.demo-footer .mdl-mini-footer--link-list a {
+		font-size: 13px;
+	}
+</style>
+</head>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+	<div ng-app="myApp" ng-controller="customersCtrl" class="">
+		<main class="demo-main mdl-layout__content">
+			<div class="demo-container mdl-grid">
+				<div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+				<div class="demo-content mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-shadow--2dp">
+					<script>
+						function signOut() {
+							var auth2 = gapi.auth2.getAuthInstance();
+							auth2.signOut().then(function () {
+								console.log('User signed out.');
+							});
+						}
+					</script>
+					<div class="mdl-card__title">
+						<h1 class=" Welcome">Welcome</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Mauris sagittis pellentesque lacus eleifend lacinia...
+						<div class="g-signin2 right" data-onsuccess="onSignIn"></div>
+					</div>
+					<div class="mdl-card__actions mdl-card--border">
+						<a href="#"class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="signOut();">Sign out</a>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script>
+		function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        $('.Welcome').html("Welcome"+profile.getName());
+    };
+</script>
+<script>
+	// var app = angular.module('myApp', []);
+	// app.controller('customersCtrl', function($scope, $http) {
+	// 	$http.post("db").then(function(response) {
+	// 		$scope.myData = response.data.ress;
+	// 	});
+	// });
+	app.run(function () {
+		var mdlUpgradeDom = false;
+		setInterval(function() {
+			if (mdlUpgradeDom) {
+				componentHandler.upgradeDom();
+				mdlUpgradeDom = false;
+			}
+		}, 200);
+		var observer = new MutationObserver(function () {
+			mdlUpgradeDom = true;
+		});
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	});
+</script>
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+</body>
+</html>
